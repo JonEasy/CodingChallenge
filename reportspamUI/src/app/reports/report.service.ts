@@ -19,7 +19,7 @@ export class ReportService {
 
   getReports(): Observable<Report[]> {
     return this.http.get<Report[]>(`${this.apiServeUrl}/reports`).pipe(
-      tap((reports) => console.log(`Fetched reports ${reports}`)),
+      tap(reports => console.log(`Fetched reports`)),
       catchError(this.handleError<Report[]>('getReports'))
     )
   }

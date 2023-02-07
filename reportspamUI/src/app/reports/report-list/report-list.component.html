@@ -2,20 +2,24 @@
 <ng-template pTemplate="body" let-report>
   <div class="container border border-dark rounded">
     <div class="row">
-      <div class="col-md-2 my-auto"><b>ID:</b> 11111</div>
-      <div class="col-md-8 my-auto"><b>Type:</b> Spam</div>
+      <div class="col-md-4 my-auto"><b>ID:</b> {{report.id}}</div>
+      <div class="col-md-6 my-auto"><b>Type:</b> {{report.payload.reportType}}</div>
       <div class="col-md-2">
         <button class="btn btn-danger btn-sm btn-block">Block</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2 my-auto"><b>State:</b> Open</div>
-      <div class="col-md-8 my-auto">
-        <b>Message:</b>{{report}}
+      <div class="col-md-4 my-auto"><b>State:</b> {{report.state}}</div>
+      <div class="col-md-6 my-auto">
+        <b>Message: </b>{{report.payload.message}}
       </div>
       <div class="col-md-2">
         <button class="btn btn-primary btn-sm btn-block">Resolve</button>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 my-auto"> <a href="">Message Details</a> </div>
+
     </div>
   </div>
 </ng-template>

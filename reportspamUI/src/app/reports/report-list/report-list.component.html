@@ -1,0 +1,22 @@
+<p-table [value]="reports" [paginator]="10 > 0" [rows]=10 >
+<ng-template pTemplate="body" let-report>
+  <div class="container border border-dark rounded">
+    <div class="row">
+      <div class="col-md-2 my-auto"><b>ID:</b> 11111</div>
+      <div class="col-md-8 my-auto"><b>Type:</b> Spam</div>
+      <div class="col-md-2">
+        <button class="btn btn-danger btn-sm btn-block">Block</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 my-auto"><b>State:</b> Open</div>
+      <div class="col-md-8 my-auto">
+        <b>Message:</b>{{report}}
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-sm btn-block">Resolve</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+</p-table>

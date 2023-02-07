@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.UUID;
 
 @Repository
 public class ReportRepository {
@@ -27,4 +29,13 @@ public class ReportRepository {
         return reports;
     }
 
+    public void delete(UUID id) {
+        Iterator<JsonNode> it = reports.iterator();
+        while (it.hasNext()) {
+            JsonNode node = it.next();
+            if (UUID.fromString(node.get("id").textValue()).equals(id)){
+                it.remove();
+            }
+        }
+    }
 }

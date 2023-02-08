@@ -14,7 +14,7 @@
         <b>Message: </b>{{report.payload.message}}
       </div>
       <div class="col-md-2">
-        <button class="btn btn-primary btn-sm btn-block">Resolve</button>
+        <button class="btn btn-primary btn-sm btn-block" (click)="resolveReport(report)">Resolve</button>
       </div>
     </div>
     <div class="row">

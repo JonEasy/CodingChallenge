@@ -11,8 +11,9 @@ export class ReportService {
 
   private apiServeUrl = environment.apiBaseUrl;
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' })
   }
+
 
   constructor(private http: HttpClient) {
   }
@@ -26,8 +27,9 @@ export class ReportService {
   }
 
   resolveReport(report: Report) {
-    const options = {params: new HttpParams().set('state', 'OPEN')}
-    return this.http.put(`${this.apiServeUrl}/${report.id}`, options)
+    const params = new HttpParams().set('state', 'OPEN')
+    console.log(params)
+    return this.http.put(`${this.apiServeUrl}/reports/${report.id}?state=CLOSED`,params)
   }
 
   private handleError<T>(operation='operation', result?: T) {

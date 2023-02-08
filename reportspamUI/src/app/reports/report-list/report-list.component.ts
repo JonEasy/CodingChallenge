@@ -14,6 +14,7 @@ export class ReportListComponent implements OnInit{
   }
 
   reports : Report[] = [];
+  reportsOpened: Report[] = [];
 
   ngOnInit(): void {
     this.getReports()
@@ -22,21 +23,14 @@ export class ReportListComponent implements OnInit{
   getReports() {
     this.reportService.getReports()
       .subscribe(reports => {
-        console.log(reports)
         this.reports = reports
-        console.log(this.reports)
-      })
-  }
-
-  resolveReport(report: Report): void {
-    report.state = "CLOSED"
-    this.reportService.resolveReport(report).subscribe( report => {
-        console.log(report);
-        this.getReports();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error)
+        this.reportsOpened = this.reports.filter(r => r.state === 'OPEN')
+        })
       }
-    )}
-
+  resolveReport(report: Report): void {
+    console.log(this.reportsOpened)
+    this.reportService.resolveReport(report).subscribe(report =>
+      this.getReports()
+    )
+  }
 }

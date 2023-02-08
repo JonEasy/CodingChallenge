@@ -20,16 +20,17 @@ export class ReportService {
 
   getReports(): Observable<Report[]> {
     return this.http.get(`${this.apiServeUrl}/reports`).pipe(
-      map( response => response as Report[]),
       tap(reports => console.log(`Fetched reports`)),
+      map( response => response as Report[]),
       catchError(this.handleError<Report[]>('getReports'))
     )
   }
 
   resolveReport(report: Report) {
-    const params = new HttpParams().set('state', 'OPEN')
-    console.log(params)
-    return this.http.put(`${this.apiServeUrl}/reports/${report.id}?state=CLOSED`,params)
+    const params = new HttpParams().set('state', 'CLOSED')
+    console.log(`Report resolved is ${report.id}`)
+    console.log(`Report resolved is ${report.state}`)
+    return this.http.put(`${this.apiServeUrl}/reports/${report.id}`,params)
   }
 
   private handleError<T>(operation='operation', result?: T) {

@@ -2,6 +2,7 @@ package com.company.reportspam.repository;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -35,6 +36,16 @@ public class ReportRepository {
             JsonNode node = it.next();
             if (UUID.fromString(node.get("id").textValue()).equals(id)){
                 it.remove();
+            }
+        }
+    }
+
+    public void resolveReport(UUID id, String state) {
+        Iterator<JsonNode> it = reports.iterator();
+        while (it.hasNext()) {
+            JsonNode node = it.next();
+            if (UUID.fromString(node.get("id").textValue()).equals(id)){
+                ((ObjectNode)node).put("state", state);
             }
         }
     }

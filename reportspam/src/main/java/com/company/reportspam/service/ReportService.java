@@ -21,4 +21,8 @@ public class ReportService {
         reportRepository.delete(id);
     }
 
+    public void resolveReport(UUID id, String state) {
+        reportRepository.resolveReport(id, state);
+    }
+
 }

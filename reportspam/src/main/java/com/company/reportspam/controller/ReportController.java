@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.UUID;
 
 @Controller
@@ -28,5 +26,11 @@ public class ReportController {
     public ResponseEntity<HttpStatus> deleteReport(@PathVariable UUID id) {
         reportService.deleteReport(id);
         return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+    }
+
+    @PutMapping("/reports/{id}")
+    public ResponseEntity<HttpStatus> resolveReport(@PathVariable UUID id, @RequestParam String state) {
+        reportService.resolveReport(id, state);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

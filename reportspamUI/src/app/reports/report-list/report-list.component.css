@@ -2,3 +2,8 @@
   margin-top: 3px;
   margin-bottom: 3px;
 }
+
+:host ::ng-deep .custom-toast .ui-toast-message {
+  width: 500px;
+  background: #FFD07B;
+}

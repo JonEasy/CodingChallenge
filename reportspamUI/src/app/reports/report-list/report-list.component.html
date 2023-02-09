@@ -5,7 +5,8 @@
       <div class="col-md-4 my-auto"><b>ID:</b> {{report.id}}</div>
       <div class="col-md-6 my-auto"><b>Type:</b> {{report.payload.reportType}}</div>
       <div class="col-md-2">
-        <button class="btn btn-danger btn-sm btn-block">Block</button>
+        <button class="btn btn-danger btn-sm btn-block" (click)="blockContentReport(report)">Block</button>
+        <p-toast position="top-right" class="custom-toast"></p-toast>
       </div>
     </div>
     <div class="row">

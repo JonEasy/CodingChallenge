@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -46,6 +44,9 @@ public class ReportRepository {
             JsonNode node = it.next();
             if (UUID.fromString(node.get("id").textValue()).equals(id)){
                 ((ObjectNode)node).put("state", state);
+                System.out.println("Changed node is ");
+                System.out.println(node.get("id"));
+                System.out.println(node.get("state"));
             }
         }
     }

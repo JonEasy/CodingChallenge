@@ -4,6 +4,8 @@ import {catchError, map, Observable, of, tap} from "rxjs";
 import {environment} from '../../environments/environment';
 import {Report} from "./report.component";
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,11 +28,21 @@ export class ReportService {
     )
   }
 
-  resolveReport(report: Report) {
+  resolveReport(report: Report): Observable<Object> {
     const params = new HttpParams().set('state', 'CLOSED')
     console.log(`Report resolved is ${report.id}`)
     console.log(`Report resolved is ${report.state}`)
     return this.http.put(`${this.apiServeUrl}/reports/${report.id}`,params)
+  }
+
+  blockContent(resourceId: string, resourceType: string ): Observable<Object> {
+    console.log(typeof resourceId)
+    console.log(resourceType)
+
+    const referenceResource = new ReferenceResource(resourceType, resourceId)
+    console.log(referenceResource)
+    return this.http.post(`${this.apiServeUrl}/block`,referenceResource, this.httpOptions)
+
   }
 
   private handleError<T>(operation='operation', result?: T) {
@@ -40,4 +52,14 @@ export class ReportService {
     }
   }
 
+}
+
+class ReferenceResource {
+  resourceType: string
+  resourceId: string
+
+  constructor(type: string, resourceId: string) {
+    this.resourceType = type
+    this.resourceId = resourceId
+  }
 }

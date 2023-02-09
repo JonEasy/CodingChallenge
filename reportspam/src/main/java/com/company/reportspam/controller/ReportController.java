@@ -1,5 +1,7 @@
 package com.company.reportspam.controller;
 
+import com.company.reportspam.model.ReferenceResource;
+import com.company.reportspam.service.BlockService;
 import com.company.reportspam.service.ReportService;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class ReportController {
     @Autowired
     ReportService reportService;
 
+    @Autowired
+    BlockService blockService;
+
     @GetMapping("/reports")
     public ResponseEntity<JsonNode> findAllReports() {
         JsonNode reports = reportService.getReports();
@@ -33,4 +38,12 @@ public class ReportController {
         reportService.resolveReport(id, state);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/block")
+    public ResponseEntity<HttpStatus> blockContent(@RequestBody ReferenceResource referenceResource) {
+        blockService.blockResource(referenceResource);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

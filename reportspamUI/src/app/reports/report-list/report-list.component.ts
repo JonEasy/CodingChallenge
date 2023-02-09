@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../report.service";
 import {Report} from "../report.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-report-list',
@@ -10,7 +11,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class ReportListComponent implements OnInit{
 
-  constructor(private reportService: ReportService) {
+  constructor(private reportService: ReportService, private messageService: MessageService) {
   }
 
   reports : Report[] = [];
@@ -31,6 +32,20 @@ export class ReportListComponent implements OnInit{
     console.log(this.reportsOpened)
     this.reportService.resolveReport(report).subscribe(report =>
       this.getReports()
+    )
+  }
+
+
+  blockContentReport(report: Report) {
+    this.messageService.add({severity:'success', detail:`Id ${report.id}`, summary: 'Blocked Report'})
+    console.log(`Paylod is ${report.payload.referenceResourceId}`)
+    this.reportService.blockContent(report.payload.referenceResourceId, report.payload.referenceResourceType).subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message)
+      }
     )
   }
 }

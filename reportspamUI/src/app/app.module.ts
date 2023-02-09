@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReportListComponent } from './reports/report-list/report-list.component';
@@ -8,6 +7,11 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import {TableModule} from "primeng/table";
 import {ReportService} from "./reports/report.service";
 import {HttpClientModule} from "@angular/common/http";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+
+
 
 @NgModule({
   declarations: [
@@ -21,10 +25,10 @@ import {HttpClientModule} from "@angular/common/http";
         BrowserAnimationsModule,
         NoopAnimationsModule,
         TableModule,
-        HttpClientModule
-
+        HttpClientModule,
+        ToastModule
     ],
-  providers: [ReportService],
+  providers: [ReportService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

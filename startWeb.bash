@@ -1,16 +1,19 @@
 #!/bin/bash
 
 
-# Run backend server 
-cd $(pwd)/reportspam
+cd "$(pwd)/reportspam"
 
-buildDir="build"
-if [! -d "${buildDir}"]; then 
+# Run backend server 
+
+# buildDir="build"
+if [[ ! -d build ]]; then 
+  echo "yes"
   chmod +x gradlew
   ./gradlew build
 fi
 java -jar "$(pwd)/reportspam/build/libs/reportspam-0.0.1-SNAPSHOT.jar" &
 
-# # Run front end
-cd "../reportspamUI" 
+# Front End
+cd ../reportspamUI
 ng serve
+

@@ -11,7 +11,7 @@ Full stack application consisting on
 
 If running under Windows OS execute `startWeb.bat`
 
-If running under Ubuntu OS execite `./startWeb.sh`
+If running under Ubuntu OS execite `bash startWeb.bash`
 
 Open Browser and navigate to http://localhost:4200
 
